@@ -13,4 +13,6 @@ Create a catelog that stores items that has inventory, prices.
 ## Bugs
 None
 
+## Class Diagram
+![Class Diagram](https://github.com/RayRuizheLi/onlineShoppingApplication/blob/main/images/onlineShoppingApplication.png)
 
