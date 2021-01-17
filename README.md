@@ -3,15 +3,14 @@
 # Progress Update:
 
 ## Current state:
-A simple python script with input output. 
+Login system optimized login process with a dictionary. 
+User can login, register, or proceed as guest.
 
 ## Next step: 
-User can login, register, or proceed as guest
+Draw a diagram. 
+Create a catelog that stores items that has inventory, prices. 
 
 ## Bugs
-Missing messages for when the user is not found
+None
 
-Guest: Go directly to shopping state
-Register: Record username, password, then go to login 
-Login: Check if the current username and password exists. If it does not, log out. 
 
