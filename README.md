@@ -24,5 +24,5 @@ Stretch Goal: replace file storage with a database storage.
 None
 
 ## Class Diagram
-![Class Diagram](https://github.com/RayRuizheLi/onlineShoppingApplication/blob/main/images/onlineShoppingApplication.png)
+![Class Diagram](https://github.com/RayRuizheLi/onlineShoppingApplication/blob/main/images/onlineShoppingApplication%20(1).png)
 
