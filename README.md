@@ -11,17 +11,12 @@ Products are stored in text file.
 
 Admin class can add, remove, and browse catalog.
 
+Shoppers can browse catalog and buy items 
+
 ## Next step: 
-Customers can browse catalog. 
-Create a shopping cart for the customer. 
-Create a customer class that stores shopping history. 
-Record admin history
-Record customer history
-
-Stretch Goal: replace file storage with a database storage. 
-
-## Bugs
-None
+Final testing
+Final Class Diagram
+flow diagram
 
 ## Class Diagram
 ![Class Diagram](https://github.com/RayRuizheLi/onlineShoppingApplication/blob/main/images/onlineShoppingApplication%20(1).png)

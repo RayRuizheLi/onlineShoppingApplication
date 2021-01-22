@@ -1,11 +1,12 @@
-from time import sleep
+from admin import Admin  
 
 usernamePrompt = "What is your username: "
 pwPrompt = "What is your password: " 
 
-# Returns a hashmap of username and passwords 
-def readLogins():
-    logins = open("loginStore.txt", "r")
+# Input: the file name of logins
+# Output: returns a hashmap of username and passwords 
+def readLogins(fileName):
+    logins = open(fileName, "r")
 
     loginDict = {}
 
@@ -40,11 +41,20 @@ def register(logins):
 
     return logins
 
-# Input: a dictionary of username password pairs 
-def login(logins):
+# Input: a dictionary of username password pairs, boolean for is admin
+# Return: if login is successful for admin. If normal, always go to register
+def login(logins, isAdmin):
     print("Loging In")  
     username = input(usernamePrompt)
     pw = input(pwPrompt) 
+
+    if isAdmin:
+        if username not in logins or logins[username] != pw:
+            print("Admin login failed")
+            return False
+        else:
+            print("Admin login success")
+            return True
 
     # Search for password and or username 
     # Can be modified to user hashing to reduce runtim 
@@ -52,24 +62,36 @@ def login(logins):
         print("Login failed, sending to register")
         logins = register(logins)
         login(logins)
-
     
     print("Login success")
+    return True 
 
 def main():
-    loginPrompt = "Please select option: login | guest | register: "
+    loginPrompt = "Please select option: login | guest | register | admin: "
     val = input(loginPrompt)
-    logins = readLogins()
+    logins = readLogins("loginStore.txt")
+    adminLogins = readLogins("adminLoginStore.txt")
     
-    if val != "guest":
+    if val == "login" or val == "register":
         # register accounts 
-        
         if val == "register":
             logins = register(logins); 
-
         
         # login time 
-        login(logins)
+        login(logins, False)
+    elif val == "admin":
+        isSuccess = login(adminLogins, True)
+        
+        if(not isSuccess):
+            exit()
+
+        admin = Admin()     
+        admin.modify()
+
+        print("Exiting admin session")
+
+        exit()                                        
+    
         
 
     print("proceeding to shopping state") 

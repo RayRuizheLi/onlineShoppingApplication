@@ -2,15 +2,26 @@ from catalog import Catalog
 from product import Product
 
 class Admin:
-    # username: string, password: string
-    def __init__(self, username, password):
-        self.__username = username
-        self.__password = password
+
+    def __init__(self):
         self.__catalog = Catalog()
+
+    def addAdmin(self):
+        print("Registering a new admin account.")
+
+        username = input("What is your username: ")
+        pw = input("What is your password: ") 
+
+        f = open("adminLoginStore.txt", "a")
+        f.write(username + "\n")
+        f.write(pw + "\n") 
+        f.close()
+
+        print("Registration for admin finished")
     
     def modify(self):
         while(True):
-            command = input("choose a command: list catalog (list) | add product (add) | remove product (remove) | exit (exit)\n")
+            command = input("choose a command: list catalog (list) | add product (add) | remove product (remove) | register new admin (regi) | exit (exit)\n")
 
             if command == "exit":
                 break; 
@@ -25,6 +36,5 @@ class Admin:
             elif command == "remove":
                 name = input("name: ")
                 self.__catalog.removeProduct(name)
-
-admin = Admin("123", "123")
-admin.modify()
+            elif command == "regi":
+                self.addAdmin()
