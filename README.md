@@ -13,11 +13,5 @@ Admin class can add, remove, and browse catalog.
 
 Shoppers can browse catalog and buy items 
 
-## Next step: 
-Final testing
-Final Class Diagram
-flow diagram
-
-## Class Diagram
-![Class Diagram](https://github.com/RayRuizheLi/onlineShoppingApplication/blob/main/images/onlineShoppingApplication%20(1).png)
-
+# Bugs: 
+Bugs happens when the incorrect values are given. Needs bullet proof. 

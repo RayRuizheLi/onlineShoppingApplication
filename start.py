@@ -1,4 +1,5 @@
 from admin import Admin  
+from shoppingCart import ShoppingCart 
 
 usernamePrompt = "What is your username: "
 pwPrompt = "What is your password: " 
@@ -61,7 +62,7 @@ def login(logins, isAdmin):
     if username not in logins or logins[username] != pw:
         print("Login failed, sending to register")
         logins = register(logins)
-        login(logins)
+        login(logins, False)
     
     print("Login success")
     return True 
@@ -71,6 +72,9 @@ def main():
     val = input(loginPrompt)
     logins = readLogins("loginStore.txt")
     adminLogins = readLogins("adminLoginStore.txt")
+
+    global isGuest 
+    isGuest = True
     
     if val == "login" or val == "register":
         # register accounts 
@@ -79,6 +83,9 @@ def main():
         
         # login time 
         login(logins, False)
+
+        isGuest = False
+        
     elif val == "admin":
         isSuccess = login(adminLogins, True)
         
@@ -90,11 +97,11 @@ def main():
 
         print("Exiting admin session")
 
-        exit()                                        
-    
-        
+        exit()
 
-    print("proceeding to shopping state") 
+
+    cart = ShoppingCart(isGuest)
+    cart.startShopping()
 
 if __name__ == "__main__":
     main()

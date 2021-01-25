@@ -1,12 +1,11 @@
-apple
-1.1
-10
 chair 
 11.5
 30
 bear
 300
-3
 car
 30000
 30
+apple
+1.1
+16

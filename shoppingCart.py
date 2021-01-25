@@ -1,8 +1,10 @@
 import copy
-from catalog import catalog
+from catalog import Catalog
+from decimal import Decimal
 
 class ShoppingCart:
     # Input: boolean for if shopping cart is for guest
+
     def __init__(self, isGuest):
         self.__isGuest = isGuest
         self.__catalog = Catalog()
@@ -14,23 +16,23 @@ class ShoppingCart:
     
     # Input: name of product and amount 
     def addProduct(self, name, quantity):
-        prod = self.__catalog.getProduct(name)
+        prod = copy.deepcopy(self.__catalog.getProduct(name))
         prod.setAmount(quantity)
-        prod.setPrice(quantity * prod.getPrice())
+        prod.setPrice(str(int(quantity) * Decimal(prod.getPrice())))
 
         self.__cart.append(prod)
 
     # Input: name of product and amount 
     def removeProduct(self, name, quantity):
         for i in range(len(self.__cart)):
-            if(self.__cart(i).getName() == name):
-                self.__cart(i).setAmount(self.__cart(i).getAmount() - quantity)
+            if(self.__cart[i].getName() == name):
+                self.__cart[i].setAmount(str(int(self.__cart[i].getAmount()) - int(quantity)))
                 
-                if self.__cart(i).getAmount() <= 0:
-                    del self.__cart(i)
+                if self.__cart[i].getAmount() <= 0:
+                    del self.__cart[i]
                     break
 
-                self.__cart(i).setPrice(self.__cart(i).getAmount() * self.__cart(i).getPrice())
+                self.__cart[i].setPrice(str(int(self.__cart[i].getAmount()) * Decimal(self.__cart[i].getPrice() / (int(self.__cart[i].getAmount()) + int(quantity)))))
 
                 break
 
@@ -45,11 +47,11 @@ class ShoppingCart:
 
         for i in self.__cart:
             prod = copy.deepcopy(self.__catalog.getProduct(i.getName()))
-            self.__catalog.removeProduct(i.getName)
+            self.__catalog.removeProduct(i.getName())
 
-            prod.setAmount(prod.getAmount() - i.getAmount())
+            prod.setAmount(str(int(prod.getAmount()) - int(i.getAmount())))
 
-            if(prod.getAmount() > 0):
+            if(int(prod.getAmount()) > 0):
                 self.__catalog.addProduct(prod)
 
         print("Checkout complete, here is your receipt")
@@ -66,7 +68,7 @@ class ShoppingCart:
                 exit()
             elif command == "list": 
                 self.__catalog.listProducts()
-            elif commmand == "cart": 
+            elif command == "cart": 
                 self.listCart()
             elif command == "add":
                 name = input("name: ")
@@ -74,7 +76,8 @@ class ShoppingCart:
                 self.addProduct(name, amount)
             elif command == "remove":
                 name = input("name: ")
-                self.removeProduct(name)
+                amount = input("amount: ")
+                self.removeProduct(name, amount)
             elif command == "check":
                 self.checkOut()
 

@@ -1,8 +1,2 @@
 ray
 li
-hi
-hi
-asdf
-asdf
-asd
-asd
